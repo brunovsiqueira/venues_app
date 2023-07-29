@@ -19,4 +19,15 @@ class LoggerServiceImpl implements LoggerService {
     // TODO: implement log
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> logException(
+      {required dynamic exception,
+      String? message,
+      Level? level,
+      StackTrace? stackTrace,
+      Map<String, dynamic>? extraAttributes}) {
+    // TODO: implement logException
+    throw UnimplementedError();
+  }
 }

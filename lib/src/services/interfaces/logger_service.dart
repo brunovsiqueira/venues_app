@@ -12,4 +12,11 @@ abstract interface class LoggerService {
       StackTrace? stackTrace,
       Exception? exception,
       Map<String, dynamic>? extraAttributes});
+
+  Future<void> logException(
+      {required dynamic exception,
+      String? message,
+      Level? level,
+      StackTrace? stackTrace,
+      Map<String, dynamic>? extraAttributes});
 }

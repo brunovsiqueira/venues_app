@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
 
 abstract interface class API {
-  Future<Response<T>> httpGet<T>({
+  Future<Response<dynamic>> httpGet({
     required String url,
     Map<String, dynamic>? queryParams,
     Map<String, dynamic>? overrideHeaders,
     Map<String, dynamic> additionalHeaders = const {},
     ResponseType? responseType,
     int? receiveTimeoutInMs,
-    int? connectTimeoutInMs,
+    int? sendTimeoutInMs,
   });
 
-  Future<Response<T>> httpPost<T>({
+  Future<Response<dynamic>> httpPost({
     required String url,
     required dynamic data,
     Map<String, dynamic>? queryParams,
@@ -19,7 +19,7 @@ abstract interface class API {
     Map<String, dynamic> additionalHeaders = const {},
     ResponseType? responseType,
     int? receiveTimeoutInMs,
-    int? connectTimeoutInMs,
+    int? sendTimeoutInMs,
   });
 
   Future<Response<dynamic>> httpPut({
@@ -30,7 +30,7 @@ abstract interface class API {
     Map<String, dynamic> additionalHeaders = const {},
     ResponseType? responseType,
     int? receiveTimeoutInMs,
-    int? connectTimeoutInMs,
+    int? sendTimeoutInMs,
   });
 
   Future<Response<dynamic>> httpPatch({
@@ -41,10 +41,10 @@ abstract interface class API {
     Map<String, dynamic> additionalHeaders = const {},
     ResponseType? responseType,
     int? receiveTimeoutInMs,
-    int? connectTimeoutInMs,
+    int? sendTimeoutInMs,
   });
 
-  Future<Response<T>> httpDelete<T>({
+  Future<Response<dynamic>> httpDelete({
     required String url,
     dynamic data,
     Map<String, dynamic>? queryParams,
@@ -52,7 +52,7 @@ abstract interface class API {
     Map<String, dynamic> additionalHeaders = const {},
     ResponseType? responseType,
     int? receiveTimeoutInMs,
-    int? connectTimeoutInMs,
+    int? sendTimeoutInMs,
   });
 
   Future<Response<dynamic>> retry({
@@ -60,6 +60,6 @@ abstract interface class API {
     CancelToken? cancelToken,
     ResponseType? responseType,
     int? receiveTimeoutInMs,
-    int? connectTimeoutInMs,
+    int? sendTimeoutInMs,
   });
 }

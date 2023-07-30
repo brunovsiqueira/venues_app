@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:venues_app/src/exceptions/restaurants_exceptions.dart';
 import 'package:venues_app/src/exceptions/unmapped_exception.dart';
 import 'package:venues_app/src/models/restaurants_response_model.dart';
+import 'package:venues_app/src/network/interfaces/api.dart';
 
-import 'interfaces/api.dart';
 import 'interfaces/restaurants_remote_datasource.dart';
 
 class RestaurantsRemoteDatasourceImpl implements RestaurantsRemoteDatasource {

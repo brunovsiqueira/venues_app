@@ -14,8 +14,13 @@ class RestaurantsServiceImpl implements RestaurantsService {
   @override
   Future<RestaurantsResponseModel> getRestaurants({
     required CoordinatesModel coordinates,
-  }) {
-    // TODO: implement getRestaurants
-    throw UnimplementedError();
+  }) async {
+    try {
+      return await _restaurantsRemoteDatasource.getRestaurants(
+          coordinates: coordinates);
+    } catch (e, stackTrace) {
+      _loggerService.logException(exception: e, stackTrace: stackTrace);
+      rethrow;
+    }
   }
 }

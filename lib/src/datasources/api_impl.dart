@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:logging/logging.dart';
-import 'package:venues_app/src/exceptions/server_exception.dart';
+import 'package:venues_app/src/exceptions/base/server_exception.dart';
 import 'package:venues_app/src/services/interfaces/connectivity_service.dart';
 import 'interfaces/api.dart';
 
@@ -35,10 +35,11 @@ class APIImpl implements API {
   Future<void> _checkNetworkConnection(String path) async {
     if (!await connectivityService.isConnected()) {
       throw ServerException(
-        dioException: DioException(requestOptions: RequestOptions(path: path)),
-        customMessage: "Verifique sua conexão e tente novamente!",
-        customLevel: Level.INFO,
-      );
+          dioException:
+              DioException(requestOptions: RequestOptions(path: path)),
+          message: "Verifique sua conexão e tente novamente!",
+          level: Level.INFO,
+          stackTrace: StackTrace.fromString('APIImpl _checkNetworkConnection'));
     }
   }
 

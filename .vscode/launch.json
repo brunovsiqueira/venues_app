@@ -7,6 +7,8 @@
         {
             "name": "[DEV] venues_app (debug mode)",
             "request": "launch",
+            "program": "lib/src/main.dart",
+            "flutterMode": "debug",
             "type": "dart",
             "args": [
                 "--dart-define=env=dev"
@@ -33,6 +35,7 @@
         {
             "name": "[PROD] venues_app (debug mode)",
             "request": "launch",
+            "flutterMode": "debug",
             "type": "dart",
             "args": [
                 "--dart-define=env=prod"

@@ -85,9 +85,10 @@ class _HomePageState extends ConsumerState<HomePage> {
             },
           );
         },
-        loading: () => Center(child: CircularProgressIndicator()),
-        error: (error, stackTrace) =>
-            Center(child: Text('Error: ${(error as BaseException).message}')),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (error, stackTrace) {
+          return Center(child: Text('Error: $error'));
+        },
       ),
     );
   }

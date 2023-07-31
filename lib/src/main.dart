@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:venues_app/src/pages/home_page.dart';
 
 Future<void> main() async {
   await dotenv.load(
       fileName:
           "lib/config/env/.${const String.fromEnvironment('env', defaultValue: 'prod')}.env");
-  runApp(const VenuesApp());
+  runApp(const ProviderScope(child: VenuesApp()));
 }
 
 class VenuesApp extends StatelessWidget {

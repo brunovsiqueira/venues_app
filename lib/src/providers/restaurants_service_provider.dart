@@ -10,7 +10,7 @@ final restaurantsServiceProvider = Provider<RestaurantsService>((ref) {
   return RestaurantsServiceImpl(
       RestaurantsRemoteDatasourceImpl(
         ref.read(apiProvider),
-        dotenv.env['https://restaurant-api.wolt.com']!,
+        dotenv.env['RESTAURANTS_API_URL']!,
       ),
       ref.read(loggerServiceProvider));
 });

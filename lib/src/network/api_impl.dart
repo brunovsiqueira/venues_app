@@ -147,7 +147,7 @@ class APIImpl implements API {
       options.sendTimeout = Duration(milliseconds: sendTimeoutInMs);
     }
 
-    final response = await dio.delete(
+    final response = await dio.get(
       url,
       options: options,
     );

@@ -16,6 +16,7 @@ class SectionModel {
       items: json['items'] != null
           ? (json['items'] as List)
               .map((e) => SectionItemModel.fromJson(e))
+              .take(15)
               .toList()
           : [],
       title: json['title'],

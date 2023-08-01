@@ -3,7 +3,7 @@ import 'package:venues_app/src/models/venue_model.dart';
 
 class SectionItemModel {
   final ImageModel image;
-  final VenueModel venue;
+  final VenueModel? venue;
 
   SectionItemModel({
     required this.image,
@@ -13,6 +13,7 @@ class SectionItemModel {
   factory SectionItemModel.fromJson(Map<String, dynamic> json) {
     return SectionItemModel(
         image: ImageModel.fromJson(json['image']),
-        venue: VenueModel.fromJson(json['venue']));
+        venue:
+            json['venue'] != null ? VenueModel.fromJson(json['venue']) : null);
   }
 }

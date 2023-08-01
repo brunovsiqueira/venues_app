@@ -12,12 +12,12 @@ class SectionModel {
   });
 
   factory SectionModel.fromJson(Map<String, dynamic> json) {
-    List items = [];
-    if (json case {'items': [List matchedItems]}) {
-      items = matchedItems;
-    }
     return SectionModel(
-      items: items.map((e) => SectionItemModel.fromJson(e)).toList(),
+      items: json['items'] != null
+          ? (json['items'] as List)
+              .map((e) => SectionItemModel.fromJson(e))
+              .toList()
+          : [],
       title: json['title'],
       name: json['name'],
     );

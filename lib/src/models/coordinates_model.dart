@@ -12,7 +12,7 @@ class CoordinatesModel extends Equatable {
   Map<String, dynamic> toQueryParams() {
     return {
       'lat': latitude,
-      'long': longitude,
+      'lon': longitude,
     };
   }
 

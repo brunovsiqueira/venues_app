@@ -71,8 +71,8 @@ class _HomePageState extends ConsumerState<HomePage> {
               // final isFavorite =
               //     venue.isFavorite; // Replace with your favorite logic
               return ListTile(
-                title: Text(restaurant.venue.name),
-                subtitle: Text(restaurant.venue.shortDescription),
+                title: Text(restaurant.venue?.name ?? ''),
+                subtitle: Text(restaurant.venue?.shortDescription ?? ''),
                 leading: Image.network(restaurant.image.url),
                 // trailing: IconButton(
                 //   icon:

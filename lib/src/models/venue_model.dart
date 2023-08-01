@@ -1,7 +1,7 @@
 class VenueModel {
   final String id;
   final String name;
-  final String shortDescription;
+  final String? shortDescription;
 
   VenueModel({
     required this.id,

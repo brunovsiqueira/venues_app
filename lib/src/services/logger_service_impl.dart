@@ -4,9 +4,8 @@ import 'package:venues_app/src/services/interfaces/logger_service.dart';
 class LoggerServiceImpl implements LoggerService {
   @override
   Future<void> initialize(
-      {required String clientToken, required String environment}) {
+      {required String clientToken, required String environment}) async {
     // TODO: implement initialize
-    throw UnimplementedError();
   }
 
   @override
@@ -15,19 +14,16 @@ class LoggerServiceImpl implements LoggerService {
       required String message,
       StackTrace? stackTrace,
       Exception? exception,
-      Map<String, dynamic>? extraAttributes}) {
+      Map<String, dynamic>? extraAttributes}) async {
     // TODO: implement log
-    throw UnimplementedError();
   }
-
   @override
   Future<void> logException(
       {required dynamic exception,
       String? message,
       Level? level,
       StackTrace? stackTrace,
-      Map<String, dynamic>? extraAttributes}) {
+      Map<String, dynamic>? extraAttributes}) async {
     // TODO: implement logException
-    throw UnimplementedError();
   }
 }

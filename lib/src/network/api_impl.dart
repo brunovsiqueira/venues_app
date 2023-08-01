@@ -76,6 +76,7 @@ class APIImpl implements API {
       url,
       data: data,
       options: options,
+      queryParameters: queryParams,
     );
 
     return response;
@@ -114,6 +115,7 @@ class APIImpl implements API {
       url,
       data: data,
       options: options,
+      queryParameters: queryParams,
     );
 
     return response;
@@ -150,6 +152,7 @@ class APIImpl implements API {
     final response = await dio.get(
       url,
       options: options,
+      queryParameters: queryParams,
     );
 
     return response;
@@ -188,6 +191,7 @@ class APIImpl implements API {
       url,
       data: data,
       options: options,
+      queryParameters: queryParams,
     );
 
     return response;
@@ -226,6 +230,7 @@ class APIImpl implements API {
       url,
       data: data,
       options: options,
+      queryParameters: queryParams,
     );
 
     return response;

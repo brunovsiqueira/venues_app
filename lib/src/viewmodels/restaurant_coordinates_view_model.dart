@@ -5,7 +5,7 @@ import 'package:venues_app/src/models/coordinates_model.dart';
 
 final locations = [
   const CoordinatesModel(latitude: 60.170187, longitude: 24.930599),
-  const CoordinatesModel(latitude: 20.169418, longitude: 20.931618),
+  const CoordinatesModel(latitude: 60.169418, longitude: 24.931618),
   const CoordinatesModel(latitude: 60.169818, longitude: 24.932906),
   const CoordinatesModel(latitude: 60.170005, longitude: 24.935105),
   const CoordinatesModel(latitude: 60.169108, longitude: 24.936210),

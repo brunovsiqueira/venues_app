@@ -26,6 +26,7 @@ dependencies:
   cached_network_image: 3.2.3
   blurhash: 1.1.1
   shimmer: 3.0.0
+  shared_preferences: 2.2.0
   flutter:
     sdk: flutter
 

@@ -7,6 +7,7 @@ Future<void> main() async {
   await dotenv.load(
       fileName:
           "lib/config/env/.${const String.fromEnvironment('env', defaultValue: 'prod')}.env");
+
   runApp(const ProviderScope(child: VenuesApp()));
 }
 

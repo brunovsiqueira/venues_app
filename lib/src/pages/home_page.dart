@@ -1,17 +1,16 @@
 import 'dart:async';
-import 'dart:typed_data';
 
-import 'package:blurhash/blurhash.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:venues_app/src/exceptions/base/base_exception.dart';
 import 'package:venues_app/src/models/coordinates_model.dart';
 import 'package:venues_app/src/models/restaurants_response_model.dart';
+import 'package:venues_app/src/models/section_item_model.dart';
 import 'package:venues_app/src/models/section_model.dart';
+import 'package:venues_app/src/providers/favorite_restaurants_provider.dart';
 import 'package:venues_app/src/providers/restaurants_coordinates_provider.dart';
 import 'package:venues_app/src/providers/restaurants_provider.dart';
-import 'package:venues_app/src/widgets/blurhash_widget.dart';
 import 'package:venues_app/src/widgets/shimmer_widget.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -22,15 +21,7 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  Timer? _timer;
-
-  final coordinates = [
-    const CoordinatesModel(latitude: 60.170187, longitude: 24.930599),
-    const CoordinatesModel(latitude: 20.169418, longitude: 20.931618),
-  ];
-
   CoordinatesModel? currentCoordinates;
-  Uint8List? _imageDataBytes;
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +37,11 @@ class _HomePageState extends ConsumerState<HomePage> {
       body: asyncResponse.when(
         skipLoadingOnRefresh: false,
         data: (restaurantsResponse) {
+          List<String> favoriteRestaurantsIds = ref
+              .read(favoriteRestaurantsControllerProvider)
+              .favoriteRestaurantsIds;
           SectionModel? restaurantsSection =
-              restaurantsResponse.deliveringRestaurants;
+              restaurantsResponse.deliveringRestaurantsSection;
 
           if (restaurantsSection == null || restaurantsSection.items.isEmpty) {
             return const Center(child: Text('No restaurants found'));
@@ -56,46 +50,81 @@ class _HomePageState extends ConsumerState<HomePage> {
           return ListView.builder(
             itemCount: restaurantsSection.items.length,
             itemBuilder: (context, index) {
-              final restaurant = restaurantsSection.items[index];
-              // final isFavorite =
-              //     venue.isFavorite; // Replace with your favorite logic
-
-              return ListTile(
-                title: Text(restaurant.venue?.name ?? ''),
-                subtitle: Text(restaurant.venue?.shortDescription ?? ''),
-                leading: CachedNetworkImage(
-                  imageUrl: restaurant.image.url,
-                  width: 100,
-                  fit: BoxFit.fill,
-                  placeholder: (context, url) => const ShimmerWidget(
-                    width: 100,
-                    height: double.infinity,
-                  ),
-                  errorWidget: (context, url, error) => Container(),
-                ),
-                // trailing: IconButton(
-                //   icon:
-                //       Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
-                //   onPressed: () {
-                //     // Handle favorite toggle logic here
-                //   },
-                // ),
-              );
+              SectionItemModel restaurantSectionItem =
+                  restaurantsSection.items[index];
+              restaurantSectionItem = restaurantSectionItem.copyWith(
+                  isFavorite: favoriteRestaurantsIds
+                      .contains(restaurantSectionItem.venue?.id));
+              if (restaurantSectionItem.venue == null) {
+                return null;
+              }
+              return VenueItemWidget(venueItem: restaurantSectionItem);
             },
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stackTrace) {
-          //TODO: handle response as exception
-          return Center(child: Text((error as BaseException).message));
+          return Center(
+              child: Text(
+                  (error as BaseException).message)); //TODO: handle refresh
         },
       ),
     );
   }
+}
+
+class VenueItemWidget extends ConsumerStatefulWidget {
+  final SectionItemModel venueItem;
+  const VenueItemWidget({
+    required this.venueItem,
+    super.key,
+  });
 
   @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
+  ConsumerState<VenueItemWidget> createState() => _VenueItemWidgetState();
+}
+
+class _VenueItemWidgetState extends ConsumerState<VenueItemWidget> {
+  late SectionItemModel venueItem;
+  @override
+  void initState() {
+    super.initState();
+    venueItem = widget.venueItem;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(venueItem.venue!.name),
+      subtitle: Text(venueItem.venue!.shortDescription ?? ''),
+      leading: CachedNetworkImage(
+        imageUrl: venueItem.image.url,
+        width: 100,
+        fit: BoxFit.fill,
+        placeholder: (context, url) => const ShimmerWidget(
+          width: 100,
+          height: double.infinity,
+        ),
+        errorWidget: (context, url, error) => Container(),
+      ),
+      trailing: IconButton(
+        icon:
+            Icon(venueItem.isFavorite ? Icons.favorite : Icons.favorite_border),
+        onPressed: () {
+          setState(() {
+            venueItem = venueItem.copyWith(isFavorite: !venueItem.isFavorite);
+          });
+          if (venueItem.isFavorite) {
+            ref
+                .read(favoriteRestaurantsControllerProvider)
+                .addFavoriteRestaurantId(venueItem.venue!.id);
+          } else {
+            ref
+                .read(favoriteRestaurantsControllerProvider)
+                .removeFavoriteRestaurantId(venueItem.venue!.id);
+          }
+        },
+      ),
+    );
   }
 }

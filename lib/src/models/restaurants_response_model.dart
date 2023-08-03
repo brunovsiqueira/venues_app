@@ -5,7 +5,7 @@ class RestaurantsResponseModel {
   final String pageTitle;
   final List<SectionModel> sections;
 
-  SectionModel? get deliveringRestaurants => sections.firstWhereOrNull(
+  SectionModel? get deliveringRestaurantsSection => sections.firstWhereOrNull(
       (element) => element.name == 'restaurants-delivering-venues');
 
   RestaurantsResponseModel({

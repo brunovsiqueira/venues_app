@@ -8,7 +8,7 @@ import 'package:venues_app/src/models/section_model.dart';
 import 'package:venues_app/src/providers/favorite_restaurants_provider.dart';
 import 'package:venues_app/src/providers/restaurants_coordinates_provider.dart';
 import 'package:venues_app/src/providers/restaurants_provider.dart';
-import 'package:venues_app/src/widgets/venue_item_widget.dart';
+import 'package:venues_app/src/widgets/restaurant_item_widget.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -51,6 +51,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             return item;
           }).toList();
           restaurantsItems.sort((a, b) => b.isFavorite ? 1 : -1);
+
           return ListView.builder(
             itemCount: restaurantsItems.length,
             itemBuilder: (context, index) {
@@ -59,7 +60,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               if (restaurantSectionItem.venue == null) {
                 return null;
               }
-              return VenueItemWidget(venueItem: restaurantSectionItem);
+              return RestaurantItemWidget(venueItem: restaurantSectionItem);
             },
           );
         },

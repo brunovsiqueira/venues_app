@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:venues_app/src/pages/home_page.dart';
+import 'package:venues_app/src/routes.dart';
+import 'pages/restaurant_details_page.dart';
 
 Future<void> main() async {
   await dotenv.load(
@@ -17,13 +19,16 @@ class VenuesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Wolt Venues',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromRGBO(87, 191, 228, 0.0)),
         useMaterial3: true,
       ),
       home: const HomePage(),
+      routes: {
+        Routes.home: (context) => const HomePage(),
+        Routes.restaurantDetails: (context) => const RestaurantDetailsPage()
+      },
     );
   }
 }

@@ -60,7 +60,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               if (restaurantSectionItem.venue == null) {
                 return null;
               }
-              return RestaurantItemWidget(venueItem: restaurantSectionItem);
+              return RestaurantItemWidget(item: restaurantSectionItem);
             },
           );
         },

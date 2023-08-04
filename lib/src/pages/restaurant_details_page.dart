@@ -15,16 +15,33 @@ class RestaurantDetailsPage extends StatelessWidget {
       appBar: AppBar(),
       body: Hero(
         tag: 'venue_image${item.venue?.id}',
-        child: CachedNetworkImage(
-          imageUrl: item.image.url,
-          height: 300,
-          width: double.infinity,
-          fit: BoxFit.fill,
-          placeholder: (context, url) => const ShimmerWidget(
-            width: 100,
-            height: double.infinity,
-          ),
-          errorWidget: (context, url, error) => Container(),
+        child: Column(
+          children: [
+            CachedNetworkImage(
+              imageUrl: item.image.url,
+              height: 300,
+              width: double.infinity,
+              fit: BoxFit.fill,
+              placeholder: (context, url) => const ShimmerWidget(
+                width: 100,
+                height: double.infinity,
+              ),
+              errorWidget: (context, url, error) => Container(),
+            ),
+            if (item.venue?.name != null)
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      item.venue!.name,
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              )
+          ],
         ),
       ),
     );

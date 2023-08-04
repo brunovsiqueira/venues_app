@@ -4,8 +4,8 @@ import 'package:venues_app/src/models/restaurants_response_model.dart';
 import 'package:venues_app/src/providers/favorite_restaurants_provider.dart';
 import 'package:venues_app/src/providers/restaurants_service_provider.dart';
 
-final restaurantsProvider =
-    FutureProvider.family<RestaurantsResponseModel, CoordinatesModel>(
+final restaurantsProvider = FutureProvider.autoDispose
+    .family<RestaurantsResponseModel, CoordinatesModel>(
         (ref, coordinates) async {
   print('provider coordinate: ${coordinates.toQueryParams()}');
   await ref

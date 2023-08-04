@@ -11,7 +11,6 @@ final restaurantsProvider =
   await ref
       .read(favoriteRestaurantsControllerProvider)
       .initializeFavoriteRestaurantsIds();
-  //TODO: pass favorites by parameter to getRestaurants?
   return ref
       .read(restaurantsServiceProvider)
       .getRestaurants(coordinates: coordinates);

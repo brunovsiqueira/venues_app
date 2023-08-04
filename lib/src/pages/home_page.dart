@@ -46,15 +46,19 @@ class _HomePageState extends ConsumerState<HomePage> {
           if (restaurantsSection == null || restaurantsSection.items.isEmpty) {
             return const Center(child: Text('No restaurants found'));
           }
-
+          List<SectionItemModel> restaurantsItems =
+              restaurantsSection.items.map((item) {
+            if (favoriteRestaurantsIds.contains(item.venue?.id)) {
+              item = item.copyWith(isFavorite: true);
+            }
+            return item;
+          }).toList();
+          restaurantsItems.sort((a, b) => b.isFavorite ? 1 : -1);
           return ListView.builder(
-            itemCount: restaurantsSection.items.length,
+            itemCount: restaurantsItems.length,
             itemBuilder: (context, index) {
-              SectionItemModel restaurantSectionItem =
-                  restaurantsSection.items[index];
-              restaurantSectionItem = restaurantSectionItem.copyWith(
-                  isFavorite: favoriteRestaurantsIds
-                      .contains(restaurantSectionItem.venue?.id));
+              SectionItemModel restaurantSectionItem = restaurantsItems[index];
+
               if (restaurantSectionItem.venue == null) {
                 return null;
               }
@@ -62,11 +66,15 @@ class _HomePageState extends ConsumerState<HomePage> {
             },
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
         error: (error, stackTrace) {
           return Center(
-              child: Text(
-                  (error as BaseException).message)); //TODO: handle refresh
+            child: Text(
+              (error as BaseException).message,
+            ),
+          ); //TODO: handle refresh
         },
       ),
     );

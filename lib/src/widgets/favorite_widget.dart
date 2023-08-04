@@ -28,7 +28,10 @@ class _FavoriteWidgetState extends ConsumerState<FavoriteWidget> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(item.isFavorite ? Icons.favorite : Icons.favorite_border),
+      icon: Icon(
+        item.isFavorite ? Icons.favorite : Icons.favorite_border,
+        color: item.isFavorite ? Colors.red : null,
+      ),
       onPressed: () {
         setState(() {
           item = item.copyWith(isFavorite: !item.isFavorite);

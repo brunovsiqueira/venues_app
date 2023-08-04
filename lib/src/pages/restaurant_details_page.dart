@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:venues_app/src/models/section_item_model.dart';
+import 'package:venues_app/src/widgets/favorite_widget.dart';
 import 'package:venues_app/src/widgets/shimmer_widget.dart';
 
 class RestaurantDetailsPage extends StatelessWidget {
@@ -29,17 +30,22 @@ class RestaurantDetailsPage extends StatelessWidget {
               errorWidget: (context, url, error) => Container(),
             ),
             if (item.venue?.name != null)
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      item.venue!.name,
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: Text(
+                        item.venue!.name,
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
-                ],
+                    FavoriteWidget(item: item),
+                  ],
+                ),
               )
           ],
         ),

@@ -69,6 +69,11 @@ class RestaurantDetailsPage extends StatelessWidget {
                 title: Text('${venue!.score}/10'),
               ),
             ),
+          if (venue?.distance != null)
+            ListTile(
+              title: Text(
+                  '${venue!.distance!} • ${venue.deliveryPrice} • ${venue.estimateRange} min'),
+            ),
         ],
       ),
     );

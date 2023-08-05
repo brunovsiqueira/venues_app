@@ -30,8 +30,8 @@ class VenueModel extends Equatable {
       shortDescription: json['short_description'],
       distance: json['distance'],
       score: score,
-      deliveryPrice: json['deliveryPrice'],
-      estimateRange: json['estimateRange'],
+      deliveryPrice: json['delivery_price'],
+      estimateRange: json['estimate_range'],
     );
   }
 

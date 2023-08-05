@@ -1,14 +1,15 @@
 import 'package:collection/collection.dart';
+import 'package:equatable/equatable.dart';
 import 'package:venues_app/src/models/section_model.dart';
 
-class RestaurantsResponseModel {
+class RestaurantsResponseModel extends Equatable {
   final String pageTitle;
   final List<SectionModel> sections;
 
   SectionModel? get deliveringRestaurantsSection => sections.firstWhereOrNull(
       (element) => element.name == 'restaurants-delivering-venues');
 
-  RestaurantsResponseModel({
+  const RestaurantsResponseModel({
     required this.pageTitle,
     required this.sections,
   });
@@ -21,4 +22,7 @@ class RestaurantsResponseModel {
           .toList(),
     );
   }
+
+  @override
+  List<Object?> get props => [pageTitle, sections];
 }

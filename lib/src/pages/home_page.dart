@@ -10,18 +10,11 @@ import 'package:venues_app/src/providers/restaurants_coordinates_provider.dart';
 import 'package:venues_app/src/providers/restaurants_provider.dart';
 import 'package:venues_app/src/widgets/restaurant_item_widget.dart';
 
-class HomePage extends ConsumerStatefulWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _HomePageState();
-}
-
-class _HomePageState extends ConsumerState<HomePage> {
-  CoordinatesModel? currentCoordinates;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final CoordinatesModel coordinates =
         ref.watch(restaurantCoordinatesProvider);
     AsyncValue<RestaurantsResponseModel> asyncResponse =

@@ -1,0 +1,49 @@
+{
+    "address": "Fredrikinkatu 46",
+    "badges": [],
+    "categories": [],
+    "city": "",
+    "country": "FIN",
+    "currency": "EUR",
+    "delivers": true,
+    "delivery_price": "€0.00",
+    "delivery_price_highlight": true,
+    "delivery_price_int": 0,
+    "distance": "100 m",
+    "estimate": 10,
+    "estimate_box": {
+        "subtitle": "min",
+        "template": "estimate",
+        "title": "5-15"
+    },
+    "estimate_range": "5-15",
+    "franchise": "",
+    "id": "5ae6013cf78b5a000bb64022",
+    "location": [
+        24.930145740509033,
+        60.16896328076366
+    ],
+    "name": "McDonald's Helsinki Kamppi",
+    "online": true,
+    "price_range": 1,
+    "product_line": "restaurant",
+    "promotions": [
+        {
+            "icon": "coupon-fill",
+            "text": "Free delivery",
+            "variant": "discount"
+        }
+    ],
+    "rating": {
+        "rating": 3,
+        "score": 8.2
+    },
+    "short_description": "I'm lovin' it.",
+    "show_wolt_plus": false,
+    "slug": "mcdonalds-kamppi-1",
+    "tags": [
+        "hamburger",
+        "salad",
+        "dessert"
+    ]
+}

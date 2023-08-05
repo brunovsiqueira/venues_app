@@ -50,7 +50,7 @@ class RestaurantDetailsPage extends StatelessWidget {
               ),
             if (item.venue?.shortDescription != null)
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
                   item.venue!.shortDescription!,
                   style: const TextStyle(fontSize: 16),

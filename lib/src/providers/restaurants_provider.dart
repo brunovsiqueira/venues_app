@@ -7,9 +7,11 @@ import 'package:venues_app/src/providers/restaurants_service_provider.dart';
 final restaurantsProvider = FutureProvider.autoDispose
     .family<RestaurantsResponseModel, CoordinatesModel>(
         (ref, coordinates) async {
-  await ref
-      .read(favoriteRestaurantsControllerProvider)
-      .initializeFavoriteRestaurantsIds();
+  final favoriteRestaurantsProvider =
+      ref.read(favoriteRestaurantsControllerProvider);
+  if (favoriteRestaurantsProvider.favoriteRestaurantsIds.isEmpty) {
+    await favoriteRestaurantsProvider.initializeFavoriteRestaurantsIds();
+  }
   return ref
       .read(restaurantsServiceProvider)
       .getRestaurants(coordinates: coordinates);

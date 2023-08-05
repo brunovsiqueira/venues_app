@@ -1,4 +1,4 @@
-import 'package:logging/src/level.dart';
+import 'package:logging/logging.dart';
 import 'package:venues_app/src/services/interfaces/logger_service.dart';
 
 class LoggerServiceImpl implements LoggerService {

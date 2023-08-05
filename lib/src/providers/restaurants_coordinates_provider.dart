@@ -20,5 +20,4 @@ final restaurantCoordinatesProvider = StateNotifierProvider.autoDispose<
   );
   restaurantCoordinatesViewModel.startLocationTimer();
   return restaurantCoordinatesViewModel;
-  //FIXME: only send 10, doesnt go to the first
 });

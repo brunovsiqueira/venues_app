@@ -36,7 +36,7 @@ class _BlurhashWidgetState extends State<BlurhashWidget> {
   @override
   Widget build(BuildContext context) {
     if (_imageDataBytes == null) {
-      return Container(); //TODO: use shimmer
+      return Container();
     }
     return Image.memory(
       _imageDataBytes!,

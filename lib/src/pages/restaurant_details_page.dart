@@ -63,11 +63,14 @@ class RestaurantDetailsPage extends StatelessWidget {
             ),
           if (venue?.score != null)
             Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: ListTile(
-                leading: const Icon(Icons.star),
-                title: Text('${venue!.score}/10'),
-              ),
+              padding: const EdgeInsets.only(top: 28.0, left: 16.0),
+              child: Row(children: [
+                const Icon(Icons.star),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text('${venue!.score}/10'),
+                )
+              ]),
             ),
           if (venue?.distance != null)
             ListTile(

@@ -6,8 +6,6 @@ import 'package:mocktail/mocktail.dart';
 import 'package:venues_app/src/models/coordinates_model.dart';
 import 'package:venues_app/src/viewmodels/restaurant_coordinates_view_model.dart';
 
-class MockCoordinatesModel extends Mock implements CoordinatesModel {}
-
 class FakeTimer implements Timer {
   bool _isActive = true;
 

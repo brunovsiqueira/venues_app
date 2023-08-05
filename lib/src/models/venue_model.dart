@@ -5,7 +5,7 @@ class VenueModel extends Equatable {
   final String name;
   final String? shortDescription;
   final String? distance;
-  final String? score;
+  final double? score;
   final String? deliveryPrice;
   final String? estimateRange;
 
@@ -20,10 +20,19 @@ class VenueModel extends Equatable {
   });
 
   factory VenueModel.fromJson(Map<String, dynamic> json) {
+    double? score;
+    if (json case {'rating': {'score': var matchedScore}}) {
+      score = matchedScore;
+    }
     return VenueModel(
-        id: json['id'],
-        name: json['name'],
-        shortDescription: json['short_description']);
+      id: json['id'],
+      name: json['name'],
+      shortDescription: json['short_description'],
+      distance: json['distance'],
+      score: score,
+      deliveryPrice: json['deliveryPrice'],
+      estimateRange: json['estimateRange'],
+    );
   }
 
   @override

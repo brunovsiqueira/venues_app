@@ -9,9 +9,7 @@ class RestaurantCoordinatesViewModel extends StateNotifier<CoordinatesModel> {
 
   RestaurantCoordinatesViewModel(
     this.coordinatesList,
-  ) : super(CoordinatesModel(
-            latitude: coordinatesList[0].latitude,
-            longitude: coordinatesList[0].longitude));
+  ) : super(coordinatesList[0]);
 
   int _locationIndex = 0;
   @visibleForTesting

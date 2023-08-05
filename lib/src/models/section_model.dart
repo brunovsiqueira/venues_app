@@ -1,11 +1,12 @@
+import 'package:equatable/equatable.dart';
 import 'package:venues_app/src/models/section_item_model.dart';
 
-class SectionModel {
+class SectionModel extends Equatable {
   final List<SectionItemModel> items;
   final String title;
   final String name;
 
-  SectionModel({
+  const SectionModel({
     required this.items,
     required this.title,
     required this.name,
@@ -23,4 +24,11 @@ class SectionModel {
       name: json['name'],
     );
   }
+
+  @override
+  List<Object?> get props => [
+        items,
+        title,
+        name,
+      ];
 }

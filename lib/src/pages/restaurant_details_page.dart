@@ -17,6 +17,7 @@ class RestaurantDetailsPage extends StatelessWidget {
       body: Hero(
         tag: 'venue_image${item.venue?.id}',
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CachedNetworkImage(
               imageUrl: item.image.url,
@@ -40,11 +41,19 @@ class RestaurantDetailsPage extends StatelessWidget {
                       child: Text(
                         item.venue!.name,
                         style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 22, fontWeight: FontWeight.bold),
                       ),
                     ),
                     FavoriteWidget(item: item),
                   ],
+                ),
+              ),
+            if (item.venue?.shortDescription != null)
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  item.venue!.shortDescription!,
+                  style: const TextStyle(fontSize: 16),
                 ),
               )
           ],

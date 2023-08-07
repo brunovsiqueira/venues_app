@@ -1,20 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:venues_app/src/controllers/favorite_restaurants_controller.dart';
 import 'package:venues_app/src/exceptions/base/base_exception.dart';
 import 'package:venues_app/src/models/coordinates_model.dart';
-import 'package:venues_app/src/models/restaurants_response_model.dart';
 import 'package:venues_app/src/pages/home_page.dart';
-import 'package:venues_app/src/providers/favorite_restaurants_provider.dart';
 import 'package:venues_app/src/providers/restaurants_provider.dart';
 import 'package:venues_app/src/services/interfaces/restaurants_service.dart';
-import 'package:venues_app/src/widgets/restaurant_item_widget.dart';
-
-import '../../fixtures/fixture_reader.dart';
 
 class MockWidgetRef extends Mock implements WidgetRef {}
 
@@ -27,20 +19,20 @@ void main() {
   final mockRestaurantsService = MockRestaurantsService();
   const String exceptionMessage = 'message';
 
-  final Map<String, dynamic> jsonMap =
-      jsonDecode(fixture('restaurants_response.json'));
+  // final Map<String, dynamic> jsonMap =
+  //     jsonDecode(fixture('restaurants_response.json'));
 
-  final successfulResponse = RestaurantsResponseModel.fromJson(jsonMap);
+  //final successfulResponse = RestaurantsResponseModel.fromJson(jsonMap);
 
   setUpAll(() {
     registerFallbackValue(coordinates);
   });
 
-  void setUpSuccessfulRemoteCall() {
-    when(() => mockRestaurantsService.getRestaurants(
-            coordinates: any(named: 'coordinates')))
-        .thenAnswer((_) async => successfulResponse);
-  }
+  // void setUpSuccessfulRemoteCall() {
+  //   when(() => mockRestaurantsService.getRestaurants(
+  //           coordinates: any(named: 'coordinates')))
+  //       .thenAnswer((_) async => successfulResponse);
+  // }
 
   void setUpRemoteException() {
     when(() =>

@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:venues_app/src/controllers/favorite_restaurants_controller.dart';
 import 'package:venues_app/src/exceptions/base/base_exception.dart';
 import 'package:venues_app/src/models/coordinates_model.dart';
 import 'package:venues_app/src/models/restaurants_response_model.dart';
 import 'package:venues_app/src/pages/home_page.dart';
+import 'package:venues_app/src/providers/favorite_restaurants_provider.dart';
 import 'package:venues_app/src/providers/restaurants_provider.dart';
 import 'package:venues_app/src/services/interfaces/restaurants_service.dart';
 import 'package:venues_app/src/widgets/restaurant_item_widget.dart';
@@ -23,7 +25,7 @@ class MockRestaurantsService extends Mock implements RestaurantsService {}
 void main() {
   const coordinates = CoordinatesModel(latitude: 62.20, longitude: 61.20);
   final mockRestaurantsService = MockRestaurantsService();
-  final String exceptionMessage = 'message';
+  const String exceptionMessage = 'message';
 
   final Map<String, dynamic> jsonMap =
       jsonDecode(fixture('restaurants_response.json'));
@@ -77,29 +79,30 @@ void main() {
       ),
     );
 
-    // The error message should be displayed
     expect(find.text(exceptionMessage), findsOneWidget);
   });
 
-  // testWidgets('HomePage shows RestaurantItemWidget message when success',
-  //     (WidgetTester tester) async {
-  //   setUpSuccessfulRemoteCall();
+  testWidgets('HomePage shows RestaurantItemWidget when success',
+      (WidgetTester tester) async {
+    setUpSuccessfulRemoteCall();
 
-  //   await tester.pumpWidget(
-  //     ProviderScope(
-  //       overrides: [
-  //         restaurantsProvider.overrideWith((ref, arg) =>
-  //             mockRestaurantsService.getRestaurants(coordinates: coordinates))
-  //       ],
-  //       child: const MaterialApp(
-  //         home: HomePage(),
-  //       ),
-  //     ),
-  //   );
+    FavoriteRestaurantsController favoriteRestaurantsController =
+        FavoriteRestaurantsController();
 
-  //   final finder = find.byType(RestaurantItemWidget);
-  //   expect(finder.first, isA<RestaurantItemWidget>());
-  // });
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          restaurantsProvider.overrideWith((ref, arg) =>
+              mockRestaurantsService.getRestaurants(coordinates: coordinates)),
+          favoriteRestaurantsControllerProvider
+        ],
+        child: const MaterialApp(
+          home: HomePage(),
+        ),
+      ),
+    );
 
-  // Add more test scenarios here...
+    final finder = find.byType(RestaurantItemWidget);
+    expect(finder.first, isA<RestaurantItemWidget>());
+  });
 }

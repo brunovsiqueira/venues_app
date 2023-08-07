@@ -62,10 +62,20 @@ class HomePage extends ConsumerWidget {
         ),
         error: (error, stackTrace) {
           return Center(
-            child: Text(
-              (error as BaseException).message,
+            child: Column(
+              children: [
+                Text(
+                  (error as BaseException).message,
+                ),
+                GestureDetector(
+                  child: const Icon(Icons.refresh),
+                  onTap: () {
+                    ref.invalidate(restaurantsProvider(coordinates));
+                  },
+                )
+              ],
             ),
-          ); //TODO: handle refresh
+          );
         },
       ),
     );

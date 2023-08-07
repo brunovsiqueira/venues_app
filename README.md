@@ -67,8 +67,7 @@ This architecture promotes separation of concerns, allowing for easy testing, ma
 The app's Riverpod providers include:
 
 - restaurantsServiceProvider: Provides the service for fetching restaurant data from the Wolt API.
-- restaurantsProvider: Fetches restaurant data based on provided coordinates using the 
-- restaurantsServiceProvider.
+- restaurantsProvider: Fetches restaurant data based on provided coordinates using the restaurantsServiceProvider.
 - restaurantCoordinatesProvider: Manages the current coordinates and updates them every 10 seconds for location updates.
 - favoriteRestaurantsControllerProvider: Manages favorite restaurants and their IDs.
 

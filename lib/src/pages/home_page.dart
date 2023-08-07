@@ -8,6 +8,7 @@ import 'package:venues_app/src/models/section_model.dart';
 import 'package:venues_app/src/providers/favorite_restaurants_provider.dart';
 import 'package:venues_app/src/providers/restaurants_coordinates_provider.dart';
 import 'package:venues_app/src/providers/restaurants_provider.dart';
+import 'package:venues_app/src/widgets/error_widget.dart';
 import 'package:venues_app/src/widgets/restaurant_item_widget.dart';
 
 class HomePage extends ConsumerWidget {
@@ -61,21 +62,7 @@ class HomePage extends ConsumerWidget {
           child: CircularProgressIndicator(),
         ),
         error: (error, stackTrace) {
-          return Center(
-            child: Column(
-              children: [
-                Text(
-                  (error as BaseException).message,
-                ),
-                GestureDetector(
-                  child: const Icon(Icons.refresh),
-                  onTap: () {
-                    ref.invalidate(restaurantsProvider(coordinates));
-                  },
-                )
-              ],
-            ),
-          );
+          return ExceptionWidget(exception: error as BaseException);
         },
       ),
     );

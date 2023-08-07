@@ -1,7 +1,17 @@
 
-## Description
+# Venues App
 
-Welcome to the Venues app! This Flutter app allows users to explore and discover venues around a predefined set of coordinates. The app fetches restaurant data using the Wolt API and provides features like favorite marking and real-time location updates.
+Welcome to the Venues app! This Flutter application allows users to explore and discover venues around predefined coordinates. The app fetches venue data using the Wolt API and offers features such as favorite marking and real-time location updates.
+
+## Table of Contents
+
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Architecture](#architecture)
+- [Error Handling](#error-handling)
+
+## Description
 
 This application leverages a set of location coordinates to present a curated list of nearby venues. A maximum of 15 venues are showcased at once. The application continuously updates the displayed venues by extracting the current location from the coordinates list, refreshing every 10 seconds.
 
@@ -29,7 +39,7 @@ The app will display a list of restaurants near the predefined coordinates. You 
 
 The app will automatically update the location every 10 seconds, providing you with a real-time view of nearby restaurants.
 
-## Artchitecture 
+## Architecture 
 The Venues App follows a modular and layered architecture to ensure maintainability and scalability. Here's an overview of the different architectural layers:
 
 - Models: Defines the data structures representing API objects. Models include methods to parse data from JSON.

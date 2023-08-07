@@ -5,11 +5,13 @@ Welcome to the Venues app! This Flutter application allows users to explore and 
 
 ## Table of Contents
 
-- [Description](#description)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Architecture](#architecture)
-- [Error Handling](#error-handling)
+- [Venues App](#venues-app)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Instalation](#instalation)
+  - [Usage](#usage)
+  - [Architecture](#architecture)
+  - [Error Handling](#error-handling)
 
 ## Description
 
@@ -22,18 +24,26 @@ Also, the user can click on each venue to see more details such as rating and es
 ## Instalation
 
 Clone this repository to your local machine using:
+```console
 git clone https://github.com/your-username/restaurant-finder-app.git
+```
 
 Navigate to the project directory:
+```console
 cd venues_app
+```
 
 Install the required dependencies:
+```console
 flutter pub get
+```
 
 ## Usage
 Usage
 Run the app on an emulator or a physical device:
+```console
 flutter run
+```
 
 The app will display a list of restaurants near the predefined coordinates. You can mark restaurants as favorites by tapping the "Favorite" button next to each restaurant.
 

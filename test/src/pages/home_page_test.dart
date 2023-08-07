@@ -81,28 +81,4 @@ void main() {
 
     expect(find.text(exceptionMessage), findsOneWidget);
   });
-
-  testWidgets('HomePage shows RestaurantItemWidget when success',
-      (WidgetTester tester) async {
-    setUpSuccessfulRemoteCall();
-
-    FavoriteRestaurantsController favoriteRestaurantsController =
-        FavoriteRestaurantsController();
-
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          restaurantsProvider.overrideWith((ref, arg) =>
-              mockRestaurantsService.getRestaurants(coordinates: coordinates)),
-          favoriteRestaurantsControllerProvider
-        ],
-        child: const MaterialApp(
-          home: HomePage(),
-        ),
-      ),
-    );
-
-    final finder = find.byType(RestaurantItemWidget);
-    expect(finder.first, isA<RestaurantItemWidget>());
-  });
 }

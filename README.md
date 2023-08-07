@@ -52,3 +52,17 @@ The app's Riverpod providers include:
 - restaurantCoordinatesProvider: Manages the current coordinates and updates them every 10 seconds for location updates.
 - favoriteRestaurantsControllerProvider: Manages favorite restaurants and their IDs.
 
+## Error Handling
+
+The app implements robust error handling to provide a smooth user experience even in the presence of unexpected errors. Error handling is categorized into different exception classes:
+
+BaseException: Base class for exceptions, including a message, stack trace, and log level.
+
+ServerException: A subclass of BaseException specifically for server-related errors. It maps DioExceptions to appropriate log levels based on HTTP status codes.
+
+UnmappedException: Handles unexpected errors that aren't explicitly mapped to other exceptions. Provides a default error message.
+
+GetRestaurantsException: A specific exception related to getting restaurant data. Extends ServerException and provides a custom error message.
+
+In the UI layer, errors are displayed using the provided exception widget. The widget extracts the error message from the exception and offers a "Refresh" button to trigger a data refresh.
+

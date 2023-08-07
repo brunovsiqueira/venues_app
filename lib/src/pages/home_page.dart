@@ -62,7 +62,12 @@ class HomePage extends ConsumerWidget {
           child: CircularProgressIndicator(),
         ),
         error: (error, stackTrace) {
-          return ExceptionWidget(exception: error as BaseException);
+          return ExceptionWidget(
+            exception: error as BaseException,
+            refreshCallback: () {
+              ref.invalidate(restaurantsProvider(coordinates));
+            },
+          );
         },
       ),
     );

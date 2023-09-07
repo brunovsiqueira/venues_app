@@ -8,7 +8,7 @@ import 'package:venues_app/src/models/section_model.dart';
 import 'package:venues_app/src/providers/favorite_restaurants_provider.dart';
 import 'package:venues_app/src/providers/restaurants_coordinates_provider.dart';
 import 'package:venues_app/src/providers/restaurants_provider.dart';
-import 'package:venues_app/src/widgets/error_widget.dart';
+import 'package:venues_app/src/widgets/exception_widget.dart';
 import 'package:venues_app/src/widgets/restaurant_item_widget.dart';
 
 class HomePage extends ConsumerWidget {
